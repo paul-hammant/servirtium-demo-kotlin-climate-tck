@@ -20,6 +20,9 @@ class ClimateApi(baseUri: Uri) {
 
     fun getAveAnnualRainfall(fromCCYY: Int, toCCYY: Int, vararg countryISOs: String): Double {
         val total = countryISOs.map { countryISO ->
+
+            //TODO to break all the tests in record mode in a big way:
+            //val response = http(Request(GET, "/dgdfgdfgdfgdfg/rest/v1/country/annualavg/pr/$fromCCYY/$toCCYY/$countryISO.xml"))
             val response = http(Request(GET, "/climateweb/rest/v1/country/annualavg/pr/$fromCCYY/$toCCYY/$countryISO.xml"))
 
             val xml = response.bodyString()

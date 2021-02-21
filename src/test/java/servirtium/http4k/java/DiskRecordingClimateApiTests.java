@@ -35,8 +35,20 @@ public class DiskRecordingClimateApiTests implements ClimateApiTests {
         servirtium.start();
     }
 
+    @Override
+    public void failed(Exception e) {
+        Interaction interaction = servirtium.getLastInteraction();
+        System.err.println("In case this aids debugging.....");
+        System.err.println("Last Interaction - Request Headers:" + interaction.getRequestHeadersAsString());
+        System.err.println("Last Interaction - Request Body:" + interaction.getRequestBodyAsString());
+        System.err.println("Last Interaction - Response Headers:" + interaction.getResponseHeadersAsString());
+        System.err.println("Last Interaction - Response Body:" + interaction.getResponseBodyAsString());
+        System.err.println("Exception - " + e.getMessage());
+    }
+
     @AfterEach
-    public void stop() {
+    public void stop(TestInfo info) {
+        System.out.println("foo=" + info.);
         servirtium.stop();
     }
 }
